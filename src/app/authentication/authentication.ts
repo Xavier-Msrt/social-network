@@ -11,4 +11,8 @@ export class Authentication {
   login(data: AuthenticationCredentials) {
     return this.http.post('/api/v1/auth/login', data);
   }
+
+  register(data: AuthenticationCredentials) {
+    return this.http.post('/api/v1/auth/register', data);
+  }
 }

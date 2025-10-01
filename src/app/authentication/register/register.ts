@@ -9,16 +9,16 @@ import {Router, RouterLink} from '@angular/router';
 @Component({
   selector: 'app-login',
   imports: [ReactiveFormsModule, FormsModule, NgClass, NgOptimizedImage, RouterLink],
-  templateUrl: './login.html'
+  templateUrl: './register.html'
 })
-export class Login {
+export class Register {
   authenticationService = inject(Authentication);
 
   loginError = false;
 
   constructor(private router: Router){}
 
-  loginForm = new FormGroup({
+  registerForm = new FormGroup({
     username: new FormControl('', [
       Validators.required,
       Validators.minLength(4),
@@ -35,12 +35,12 @@ export class Login {
 
 
   onSubmit() {
-    if (this.loginForm.valid) {
+    if (this.registerForm.valid) {
       let credentials: AuthenticationCredentials = {
-        username: this.loginForm.controls['username'].value!,
-        password: this.loginForm.controls['password'].value!
+        username: this.registerForm.controls['username'].value!,
+        password: this.registerForm.controls['password'].value!
       }
-      this.authenticationService.login(credentials).subscribe({
+      this.authenticationService.register(credentials).subscribe({
         next: (data) => {
           const response = data as AuthenticationResponse;
           console.log(response.accessToken);
@@ -48,7 +48,7 @@ export class Login {
         },
         error: () => {
           this.loginError = true;
-          this.loginForm.reset();
+          this.registerForm.reset();
         }
       });
     }
@@ -75,10 +75,10 @@ export class Login {
 
 
   get username() {
-    return this.loginForm.controls.username;
+    return this.registerForm.controls.username;
   }
   get password() {
-    return this.loginForm.controls.password;
+    return this.registerForm.controls.password;
   }
 
   get usernameError() {

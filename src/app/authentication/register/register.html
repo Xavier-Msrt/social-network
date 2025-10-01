@@ -12,9 +12,9 @@
     </figure>
 
     <div class="w-full lg:w-1/2 flex flex-col p-6 lg:p-12">
-      <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" class="flex flex-col flex-grow">
+      <form (ngSubmit)="onSubmit()" [formGroup]="registerForm" class="flex flex-col flex-grow">
         <div class="w-full max-w-md mx-auto">
-          <h2 class="text-3xl font-bold text-center">Login</h2>
+          <h2 class="text-3xl font-bold text-center">Register</h2>
         </div>
 
         <div class="w-full max-w-md mx-auto flex-grow flex flex-col justify-center">
@@ -63,8 +63,8 @@
         </div>
 
         <div class="w-full max-w-md mx-auto">
-          <button type="submit" class="btn btn-neutral w-full" [disabled]="loginForm.invalid">Login</button>
-          <a [routerLink]="['/register']" class="text-center block mt-2">You don't have an account?</a>
+          <button type="submit" class="btn btn-neutral w-full" [disabled]="registerForm.invalid">Register</button>
+          <a [routerLink]="['/login']" class="text-center block mt-2">You already have an account?</a>
         </div>
       </form>
     </div>
