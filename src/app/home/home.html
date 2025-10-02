@@ -1,4 +1,4 @@
-<div>
+<div class="flex flex-col h-screen">
   <div class="navbar bg-base-100 shadow-sm">
     <div class="navbar-start">
       <div class="dropdown">
@@ -12,6 +12,25 @@
     <div class="navbar-end">
       <a [routerLink]="['/login']" class="btn mx-2">Login</a>
       <a [routerLink]="['/register']" class="btn mx-2">Register</a>
+    </div>
+  </div>
+  <div
+    class="hero flex-1"
+    style="background-image: url('assets/images/mockup-5290462_1920.jpg');"
+  >
+    <div class="hero-overlay"></div>
+    <div class="hero-content text-neutral-content text-center">
+      <div class="max-w-md">
+        <h1 class="mb-5 text-5xl font-bold w-full">Welcome on Social Network</h1>
+        <p class="mb-5">
+          This app as been created to learn Angular and gaining experience in web app development.
+        </p>
+        <p class="mb-5">↓ You can find the source code ↓</p>
+        <div class="flex flex-row justify-center gap-4">
+          <a href="https://github.com/Xavier-Msrt/social-network-frontend" class="btn btn-info">Frontend (Angular)</a>
+          <a href="https://github.com/Xavier-Msrt/social-network-backend" class="btn btn-info">Backend (Spring boot)</a>
+        </div>
+      </div>
     </div>
   </div>
 </div>
