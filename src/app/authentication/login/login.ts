@@ -1,14 +1,14 @@
 import {Component, inject} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import {NgClass, NgOptimizedImage} from '@angular/common';
 import {Authentication} from '../authentication';
 import {AuthenticationCredentials} from '../authentication-credentials';
 import {AuthenticationResponse} from '../authentication-response';
-import {Router, RouterLink} from '@angular/router';
+import {Router} from '@angular/router';
+import {AuthForm} from '../auth-form/auth-form';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, FormsModule, NgClass, NgOptimizedImage, RouterLink],
+  imports: [ReactiveFormsModule, FormsModule, AuthForm],
   templateUrl: './login.html'
 })
 export class Login {
