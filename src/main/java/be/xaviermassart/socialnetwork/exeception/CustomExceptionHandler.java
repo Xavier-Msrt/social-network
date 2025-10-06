@@ -40,4 +40,25 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         error.setStatus(HttpStatus.BAD_REQUEST.value());
         return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<Object> handleNotFoundException(HttpServletRequest request) {
+        ErrorResponse error = new ErrorResponse();
+        error.setPath(request.getRequestURI());
+        error.setError("Resource not found");
+        error.setTimestamp(System.currentTimeMillis());
+        error.setStatus(HttpStatus.NOT_FOUND.value());
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(ForbiddenAccessException.class)
+    public ResponseEntity<Object> handleForbiddenAccessException(HttpServletRequest request) {
+        ErrorResponse error = new ErrorResponse();
+        error.setPath(request.getRequestURI());
+        error.setError("Forbidden access");
+        error.setTimestamp(System.currentTimeMillis());
+        error.setStatus(HttpStatus.FORBIDDEN.value());
+        return new ResponseEntity<>(error, HttpStatus.FORBIDDEN);
+    }
+
 }
