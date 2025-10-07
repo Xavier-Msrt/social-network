@@ -8,6 +8,7 @@ import be.xaviermassart.socialnetwork.service.AuthenticationService;
 import be.xaviermassart.socialnetwork.validator.PasswordValidator;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,4 +41,11 @@ public class AuthController {
     public AuthenticationResponse refresh(@RequestBody @Valid RefreshTokenAuthenticationRequest request) {
         return authenticationService.refresh(request);
     }
+
+    @PostMapping("/me")
+    public ResponseEntity<Void> me() {
+        return ResponseEntity.ok().build();
+    }
 }
+
+
