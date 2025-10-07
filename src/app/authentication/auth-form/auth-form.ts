@@ -34,8 +34,9 @@ export class AuthForm {
       this.authenticationService[this.type](credentials).subscribe({
         next: (data) => {
           const response = data as AuthenticationResponse;
-          // TODO store the token
-          this.router.navigate(['/']);
+          this.authenticationService.setAccessToken(response.accessToken);
+          this.authenticationService.setRefreshToken(response.refreshToken);
+          this.router.navigate(['/feed']);
         },
         error: () => {
           this.loginError = true;
