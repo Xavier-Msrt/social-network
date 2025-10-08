@@ -1,11 +1,18 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
+import {PostService} from '../post-service';
+import {AsyncPipe} from '@angular/common';
+import {Navbar} from '../../navbar/navbar';
 
 @Component({
   selector: 'app-feed',
-  imports: [],
+  imports: [
+    AsyncPipe,
+    Navbar
+  ],
   templateUrl: './feed.html',
-  styleUrl: './feed.css'
 })
 export class Feed {
+  postService = inject(PostService);
 
+  posts = this.postService.getPosts();
 }

@@ -1,19 +1,5 @@
 <div class="flex flex-col h-screen">
-  <div class="navbar bg-base-100 shadow-sm">
-    <div class="navbar-start">
-      <div class="dropdown">
-        <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /> </svg>
-        </div>
-
-      </div>
-      <a class="btn btn-ghost text-xl" [routerLink]="['/']">Social Network</a>
-    </div>
-    <div class="navbar-end">
-      <a [routerLink]="['/login']" class="btn mx-2">Login</a>
-      <a [routerLink]="['/register']" class="btn mx-2">Register</a>
-    </div>
-  </div>
+  <app-navbar />
   <div
     class="hero flex-1"
     style="background-image: url('assets/images/mockup-5290462_1920.jpg');"
