@@ -2,7 +2,7 @@ import {Component, inject, Input} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgClass, NgOptimizedImage} from "@angular/common";
 import {Router, RouterLink} from '@angular/router';
-import {Authentication} from '../authentication';
+import {AuthenticationService} from '../authentication-service';
 import {AuthenticationCredentials} from '../authentication-credentials';
 import {AuthenticationResponse} from '../authentication-response';
 
@@ -21,7 +21,7 @@ export class AuthForm {
   loginError = false;
 
   @Input() type: 'login' | 'register' = 'login';
-  authenticationService = inject(Authentication);
+  authenticationService = inject(AuthenticationService);
   constructor(private router: Router) {}
 
   onSubmit() {
