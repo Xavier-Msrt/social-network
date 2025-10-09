@@ -20,4 +20,14 @@ export class PostService {
     return this.http.get<Post[]>('/api/v1/posts', { headers });
   }
 
+  createPost(title: string, content: string) {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.authService.getAccessToken()}`
+    })
+
+    return this.http.post<Post>('/api/v1/posts', {
+      title,
+      content,
+    }, { headers });
+  }
 }
