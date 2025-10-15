@@ -20,7 +20,7 @@ public class PostService {
     private final PostRepository postRepository;
 
     public Iterable<PostDTO> findAll() {
-        return postRepository.findAll().stream()
+        return postRepository.findTenLastPost().stream()
                 .map(PostDTO::from)
                 .toList();
     }

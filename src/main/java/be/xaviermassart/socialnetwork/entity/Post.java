@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -22,7 +22,8 @@ public class Post {
     private String content;
 
     @CreationTimestamp
-    private Date posted_at;
+    @Temporal(TemporalType.TIMESTAMP)
+    private LocalDateTime posted_at;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

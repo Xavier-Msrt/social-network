@@ -29,7 +29,7 @@ public class PostController {
     }
 
     @PutMapping("/{id}")
-    public PostDTO updateOrCreate(@PathVariable Long id, @RequestBody PostDTO postDTO) {
+    public PostDTO updateOrCreate(@PathVariable Long id, @RequestBody @Valid PostDTO postDTO) {
         return postService.updateOrCreate(id, postDTO);
     }
 

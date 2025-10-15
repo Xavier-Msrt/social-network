@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Data;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Data
 @Builder
@@ -18,15 +18,19 @@ public class PostDTO {
     private String title;
     @NotBlank
     private String content;
+    private LocalDateTime postedAt;
+
     private Long authorId;
-    private Date postedAt;
+    private String authorName;
 
     public static PostDTO from(Post post) {
+        User user = post.getUser();
         return PostDTO.builder()
                 .id(post.getId())
                 .title(post.getTitle())
                 .content(post.getContent())
-                .authorId(post.getUser().getId())
+                .authorId(user.getId())
+                .authorName(user.getUsername())
                 .postedAt(post.getPosted_at())
                 .build();
     }
