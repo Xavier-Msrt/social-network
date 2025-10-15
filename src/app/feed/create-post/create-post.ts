@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, EventEmitter, inject, Output} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {PostService} from '../post-service';
 
@@ -11,6 +11,7 @@ import {PostService} from '../post-service';
 })
 export class CreatePost {
   private postService = inject(PostService);
+  @Output() postAdded = new EventEmitter<void>();
   isModalOpen = false;
 
   form = new FormGroup({
@@ -28,9 +29,19 @@ export class CreatePost {
 
   addPost() {
     if (this.form.valid) {
-      this.postService.createPost(this.form.controls.title.value!, this.form.controls.content.value!).subscribe();
-      this.closeModal();
-      this.form.reset();
+      const title = this.form.controls.title.value!;
+      const content = this.form.controls.content.value!;
+
+      this.postService.createPost(title, content).subscribe({
+        next: () => {
+          this.closeModal();
+          this.form.reset();
+          this.postAdded.emit();
+        },
+        error: (err) => {
+          console.error('error while creating', err);
+        }
+      });
     }
   }
 }
