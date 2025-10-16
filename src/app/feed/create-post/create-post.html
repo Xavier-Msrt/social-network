@@ -16,6 +16,9 @@
               placeholder="post title"
               class="input input-bordered w-full"
             />
+            @if (this.error) {
+              <p class="text-error text-sm mt-1">Must be 5 to 100 characters</p>
+            }
           </div>
 
           <div class="form-control flex flex-col">
@@ -27,6 +30,9 @@
               class="textarea textarea-bordered h-24 w-auto"
               placeholder="post description"
             ></textarea>
+            @if (this.error) {
+              <p class="text-error text-sm mt-1">Must be 10 to 2000 characters</p>
+            }
           </div>
         </div>
 

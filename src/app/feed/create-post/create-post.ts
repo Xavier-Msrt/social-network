@@ -13,10 +13,19 @@ export class CreatePost {
   private postService = inject(PostService);
   @Output() postAdded = new EventEmitter<void>();
   isModalOpen = false;
+  error: boolean = false;
 
   form = new FormGroup({
-    title: new FormControl('', Validators.required),
-    content: new FormControl('', Validators.required)
+    title: new FormControl('', [
+      Validators.required,
+      Validators.minLength(5),
+      Validators.maxLength(100)
+    ]),
+    content: new FormControl('', [
+      Validators.required,
+      Validators.minLength(10),
+      Validators.maxLength(2000)
+    ])
   })
 
   openModal() {
@@ -40,8 +49,11 @@ export class CreatePost {
         },
         error: (err) => {
           console.error('error while creating', err);
+          this.error = true;
         }
       });
+    }else{
+      this.error = true;
     }
   }
 }
