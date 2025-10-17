@@ -1,0 +1,38 @@
+services:
+  db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: socialnetwork
+      POSTGRES_USER: socialuser
+      POSTGRES_PASSWORD: socialpass
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: ./backend
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/socialnetwork
+      SPRING_DATASOURCE_USERNAME: socialuser
+      SPRING_DATASOURCE_PASSWORD: socialpass
+      JWT_SECRET_ACCESS: G2y3aHyacu-YennQkYvVQLoUMleDXgRiOJ0En8BaH2ENnJomFxrVWspXk1TzohIsU0aerFPGfWHPOu67N18bSQ
+      JWT_SECRET_REFRESH: G2y3aHyacu-YennQkvYVQLoUMleDXgRiOJ0En8BaH2ENnJomFxrVWspXk1TzohIsU0aerFPGfWHPOu67N18bAB
+      JWT_ISSUER: social-network-app
+      JWT_AUDIENCE: social-network-users
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    ports:
+      - "8080:8080"
+
+  frontend:
+    build: ./frontend
+    depends_on:
+      - backend
+    ports:
+      - "4200:4200"
+
+volumes:
+  db_data:
