@@ -30,6 +30,9 @@ public class PostController {
 
     @PutMapping("/{id}")
     public PostDTO updateOrCreate(@PathVariable Long id, @RequestBody @Valid PostDTO postDTO) {
+        if(!postDTO.getId().equals(id)){
+            throw new IllegalArgumentException("The id need to be the same as the path variable");
+        }
         return postService.updateOrCreate(id, postDTO);
     }
 

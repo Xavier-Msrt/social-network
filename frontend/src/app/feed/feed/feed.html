@@ -2,16 +2,22 @@
 <div class="container mx-auto max-w-2xl p-4">
   <div class="flex justify-between mb-6">
     <button class="btn btn-primary" (click)="refresh()">Refresh</button>
-    <app-create-post (postAdded)="refresh()" />
+    <app-post-form type="create" (afterAction)="refresh()" />
   </div>
   @for (post of posts$ | async; track post.id) {
     <div class="border  p-6 mb-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
       <h1 class="text-2xl font-bold mb-2">{{ post.title }}</h1>
       <p class="text-gray-700 mb-4">{{ post.content }}</p>
-      <div class="text-sm text-gray-500">
-        <p class="mb-1">Author: {{ post.authorName }}</p>
-        <p>Posted: {{ post.postedAt | date:'dd/MM/yy HH:mm' }}</p>
+      <div class="flex justify-between">
+        <div class="text-sm text-gray-500">
+          <p class="mb-1">{{ post.author ? 'You' : 'Author: ' + post.authorName }}</p>
+          <p>Posted: {{ post.postedAt | date:'dd/MM/yy HH:mm' }}</p>
+        </div>
+        <div class="flex items-center">
+          <app-post-form type="edit" (afterAction)="refresh()" [post]="post" />
+        </div>
       </div>
+
     </div>
   } @empty {
     <div class="text-center text-gray-500">No posts yet.</div>

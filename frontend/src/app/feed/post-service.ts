@@ -30,4 +30,12 @@ export class PostService {
       content,
     }, { headers });
   }
+
+  editPost(post: Post) {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.authService.getAccessToken()}`
+    })
+
+    return this.http.put<Post>(`/api/v1/posts/${post.id}`, post, { headers });
+  }
 }

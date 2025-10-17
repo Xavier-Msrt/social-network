@@ -25,8 +25,9 @@ public class PostDTO {
 
     private Long authorId;
     private String authorName;
+    private boolean isAuthor;
 
-    public static PostDTO from(Post post) {
+    public static PostDTO from(Post post, Long currentUserId) {
         User user = post.getUser();
         return PostDTO.builder()
                 .id(post.getId())
@@ -34,6 +35,7 @@ public class PostDTO {
                 .content(post.getContent())
                 .authorId(user.getId())
                 .authorName(user.getUsername())
+                .isAuthor(user.getId().equals(currentUserId))
                 .postedAt(post.getPosted_at())
                 .build();
     }

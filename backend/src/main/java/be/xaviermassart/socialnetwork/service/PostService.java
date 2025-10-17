@@ -20,20 +20,22 @@ public class PostService {
     private final PostRepository postRepository;
 
     public Iterable<PostDTO> findAll() {
+        Long userId = getIdFromAuthentication();
         return postRepository.findTenLastPost().stream()
-                .map(PostDTO::from)
+                .map((p) -> PostDTO.from(p, userId))
                 .toList();
     }
 
     public PostDTO findById(Long id) {
-        return PostDTO.from(postRepository.findById(id).orElseThrow(NotFoundException::new));
+        Long userId = getIdFromAuthentication();
+        return PostDTO.from(postRepository.findById(id).orElseThrow(NotFoundException::new), userId);
     }
 
     public PostDTO create(PostDTO postDTO) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User author = (User) authentication.getPrincipal();
         Post post = postDTO.toEntity(author);
-        return PostDTO.from(postRepository.save(post));
+        return PostDTO.from(postRepository.save(post), author.getId());
     }
 
 
@@ -50,13 +52,13 @@ public class PostService {
             postToUpdate = post.get();
             postToUpdate.setContent(postDTO.getContent());
             postToUpdate.setTitle(postDTO.getTitle());
-            return PostDTO.from(postRepository.save(postToUpdate));
+            return PostDTO.from(postRepository.save(postToUpdate), author.getId());
         }
         postToUpdate = new Post();
         postToUpdate.setContent(postDTO.getContent());
         postToUpdate.setTitle(postDTO.getTitle());
         postToUpdate.setUser(author);
-        return PostDTO.from(postRepository.save(postToUpdate));
+        return PostDTO.from(postRepository.save(postToUpdate), author.getId());
 
 
     }
@@ -69,5 +71,11 @@ public class PostService {
             throw new ForbiddenAccessException();
         }
         postRepository.deleteById(id);
+    }
+
+    private Long getIdFromAuthentication(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User author = (User) authentication.getPrincipal();
+        return author.getId();
     }
 }

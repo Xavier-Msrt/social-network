@@ -2,15 +2,15 @@ import {Component, inject} from '@angular/core';
 import {PostService} from '../post-service';
 import {AsyncPipe, DatePipe} from '@angular/common';
 import {Navbar} from '../../navbar/navbar';
-import {CreatePost} from '../create-post/create-post';
+import {PostForm} from '../post-form/post-form';
 
 @Component({
   selector: 'app-feed',
   imports: [
     AsyncPipe,
     Navbar,
-    CreatePost,
-    DatePipe
+    PostForm,
+    DatePipe,
   ],
   templateUrl: './feed.html',
 })
