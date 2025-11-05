@@ -1,59 +1,48 @@
-# SocialNetworkFrontend
+# Social Network Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.3.
+## Description
+This repository contains the **user interface** for a social networking application, built as a Single Page Application (SPA). It interacts with the **Social Network Backend** via a REST API.
 
-## Development server
+---
 
-To start a local development server, run:
+## Technologies Used
+* **Angular** (Version 20.3.0+) for the core application framework.
+* **TypeScript** for enhanced code quality and developer experience.
+* **Tailwind CSS** (v4.1.13) for utility-first styling.
+* **daisyUI** (v5.1.25) as a component library built on top of Tailwind CSS.
+* **RxJS** for reactive programming and state management.
 
-```bash
-ng serve
-```
+---
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Getting Started
 
-## Code scaffolding
+### Installation
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+1.  **Go to the frontend directory:**
+    ```bash
+    cd frontend
+    ```
 
-```bash
-ng generate component component-name
-```
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+### Available Scripts
 
-```bash
-ng generate --help
-```
+Use the following scripts to run the application:
 
-## Building
+* **Development Server (Development API):** Runs the app with a proxy configured for the development backend environment (`proxy.dev.json`).
+    ```bash
+    npm run start:dev
+    ```
 
-To build the project run:
+* **Development Server (Production API):** Runs the app with a proxy configured for the production backend environment (`proxy.prod.json`).
+    ```bash
+    npm run start:prod
+    ```
 
-```bash
-ng build
-```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## License
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+[GNU AGPLv3](https://choosealicense.com/licenses/agpl-3.0/)
